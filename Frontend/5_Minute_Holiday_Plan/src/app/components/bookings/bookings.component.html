@@ -1,0 +1,42 @@
+<div class="wrapper">
+    <nav>
+      <div class="appleNav">
+        <ul>   
+          <li><a routerLink="/chat" [queryParams]="{'session':(sessionId$|async)}">Chat</a></li>
+          <li><a routerLink="/">Log Out</a></li>
+          <li><a routerLink="/t&c" [queryParams]="{'session':(sessionId$|async)}">T&C</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+<h1>Your Active Bookings</h1>
+<div class="flight-bookings">
+    <div *ngFor="let flightBooking of rows;let i =index" class="flight-header">
+        <div *ngFor="let flightBookingData of flightBooking.data.flightOffers">
+            <div class="header">
+                <div class="banner"></div>
+            </div>
+            <div class="header-details">
+                <img [src]="'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/' + flightBookingData.itineraries[0].segments[0].carrierCode + '.svg' "alt="Airline Logo">
+                <span class="order-id">Order ID: {{flightBooking.data.id}}</span>
+            </div>
+            <div class="main-flight-details">
+                <span class="iata-details">
+                    <span>{{flightBookingData.itineraries[0].segments[0].departure.iataCode}}</span>
+                    <img src="/assets/takeoff.png" alt="" width = "90" height = "90">
+                    <span>{{flightBookingData.itineraries[0].segments[flightBookingData.itineraries[0].segments.length - 1].arrival.iataCode}}</span>
+                </span>
+                <span class="dates">
+                    <span>DEPARTURE: {{flightBookingData.itineraries[0].segments[0].departure.at|date:"H:mm on dd MMMM"}}</span>
+                    <span>ARRIVAL: {{flightBookingData.itineraries[0].segments[flightBookingData.itineraries[0].segments.length - 1].arrival.at|date:"H:mm on dd MMMM"}}</span>
+                    <span>CABIN: {{flightBookingData.itineraries[0].segments[0].co2Emissions[0].cabin}} </span>
+                </span>
+            
+            </div>
+            <button class="position-absolute bottom-0 end-0 btn btn-danger" 
+            (click)="deleteBooking(flightBooking.data.id)">Delete booking</button>
+        </div>
+    </div>
+
+</div>

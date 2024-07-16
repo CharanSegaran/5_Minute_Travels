@@ -1,0 +1,123 @@
+.flight-bookings{
+
+}
+
+.flight-header {
+    border-radius: 2vw;
+    border: 1px solid #F5F5F5;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 30lvw;
+    width: 80lvw;
+    margin-left: auto;
+    margin-right: auto;
+	position: relative;
+	background-color: rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+h1{
+    text-align: center;
+    margin-top: 2lvw;
+}
+
+.header{
+    position: relative;
+}
+
+.header-details{
+    position: absolute;
+    top: 5%; 
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+    z-index: 1; 
+}
+
+.header-details img{
+	height: 4vw;
+    filter: drop-shadow(0px 2px 1px rgb(0, 0, 0));
+}
+
+.order-id{
+    font-size: 1.2vw;
+    color: black;
+    font-weight: 700;
+}
+
+.banner {
+    border-top: 8vw solid;
+	border-image: linear-gradient(to right, rgb(219, 219, 219), rgb(255, 255, 255)) 1;
+    padding: 2vw 2vw;
+    width: 100%;
+}
+
+
+.main-flight-details{
+    position: absolute;
+    top: 30%; 
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+    z-index: 1; 
+}
+
+.iata-details{
+    font-size: 500%;
+    font-weight: 300;
+    position: relative;
+    top: 5%; 
+}
+
+.dates{
+    font-weight: 700;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    line-height: 2;
+}
+
+
+.wrapper {
+    height: 10vh;
+  }
+  
+  nav {
+    height: 44px;
+    overflow: scroll;
+    background: #323232;
+  }
+  
+  nav ul {
+    display: flex;
+    height: 44px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto;
+    list-style-type: none;
+  }
+  
+  
+  nav a {
+    display: block;
+    color: white;
+    font-size: 15px;
+    font-weight: lighter;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  nav a:hover {
+    color: #B8B8B8;
+  }
+  
+  .appleNav {
+    max-width: 980px;
+    margin: 0 auto;
+  }

@@ -1,0 +1,321 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .wrapper,
+  .content {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .content {
+    overflow-x: hidden;
+  }
+  
+  .content .section {
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .content .section.hero {
+    background-image: url(https://images.alphacoders.com/997/thumb-1920-997468.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .content .section.gradient-purple{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    perspective: 500px;
+    overflow: hidden;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .gradient-purple{
+    background: #ffffff;
+  }
+
+  body {
+    height: 100vh; 
+    background: #f6f5f7;
+    display: grid;
+    place-content: center; 
+    overflow: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .container {
+    position: relative; 
+    width: 950px;
+    height: 600px; 
+    background-color: #FFF;
+    box-shadow: 25px 30px 55px #5557;
+    border-radius: 13px;
+    overflow: hidden;
+  }
+  
+  .form-container {
+    position: absolute; 
+    width: 60%;
+    height: 100%;
+    padding: 0px 30px; 
+    transition: all 0.6s ease-in-out;
+    align-content: center;
+  }
+  
+  .sign-up-container {
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  .sign-in-container {
+    z-index: 2;
+  }
+  
+  form {
+    height: 100%;
+    display:flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 50px;  
+  }
+  
+  h1 {
+    color: #232323;
+    font-weight:bold;
+  }
+  
+  span {
+    font-size: 12px;
+    padding: 10px;
+  }
+  
+  .infield {
+    position: relative;
+    margin: 8px 0px; 
+    width: 100%;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px 15px; 
+    background-color: #f3f3f3;
+    border: none;
+    outline: none;
+  }
+  
+  label {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 2px;
+    background:#6fff4b;
+    transition: width 0.3s ease;
+  }
+  
+  input:focus ~ label {
+    width: 100%;
+  }
+  
+  a {
+    color: rgb(48, 48, 48);
+    font-size: 14px;
+    text-decoration: none; 
+    margin: 15px 0px;
+    padding-bottom: 3px;
+  }
+  
+  button {
+    border-radius: 20px;
+    border: 1px;
+    background:#1c1c1c;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold; 
+    padding: 12px 45px; 
+    letter-spacing: 1px;
+    text-transform: uppercase; 
+  }
+  
+  .form-container button {
+    margin-top: 17px;
+    transition: 80ms ease-in;
+  }
+  
+  .form-container button:hover {
+    background: #FFF;
+    color: black;
+  }
+  
+  .overlay-container {
+    position: absolute;
+    top: 0;
+    left: 60%;
+    width: 40%;
+    height: 100%;
+    overflow: hidden; 
+    transition: transform 0.6s ease-in-out;
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+  } 
+  
+  #overlayBtn {
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translateX(-50%);
+    width: 143.67px;
+    height: 40px; 
+    border: 1px solid #FFF;
+    background: transparent; 
+    border-radius: 20px;
+  } 
+  
+  .overlay {
+    position: relative;
+    background: linear-gradient(20deg, cyan, magenta);
+    color: #FFF;
+    left: -150%;
+    height: 100%;
+    width: 250%;
+    transition: transform 0.6s ease-in-out;
+  } 
+  
+  .overlay-panel {
+    position: absolute; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column;
+    padding: 0px 40px;
+    text-align: center;
+    height: 100%;
+    width: 340px;  
+    transition: 0.6s ease-in-out;
+  } 
+  
+  .overlay-left{
+    right: 61%;
+    top: -1%;
+  }
+  
+  .overlay-right {
+    right: 2%;
+    top: -3%;
+  } 
+  
+  .overlay-panel h1 {
+    color: #FFF; 
+  }
+  
+  p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 25px 0px 35px;
+  }
+  
+  .overlay-panel button {
+    border: none;
+    background-color: transparent;
+
+  } 
+  
+  .right-panel-active .overlay-container {
+    transform: translateX(-150%);
+  }
+  
+  .right-panel-active .overlay {
+    transform: translateX(50%);
+  }
+  
+  .right-panel-active .overlay-left {
+    transform: translateX(25%);
+  }
+  
+  .right-panel-active .overlay-right {
+    transform: translateX(35%);
+  }
+  
+  .right-panel-active .sign-in-container {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  
+  .right-panel-active .sign-up-container {
+    transform: translateX(66.7%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+  }
+  
+  @keyframes show {
+    0%, 50% {
+      opacity: 0;
+      z-index: 1;
+    }
+    50.1%, 100% {
+      opacity: 1;
+      z-index: 5;
+    }
+  }
+  
+  .square {
+    position: absolute;
+    height: 400px;
+    top: 65%;
+    left: 50%;
+    transform: translate(181%, 11%);
+    opacity: 0.2;
+  }
+  
+  .big-circle {
+    position: absolute;
+    width: 65vw;
+    height: 65vw;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, magenta,cyan);
+    /* bottom: 50%; */
+    left: -20%; 
+    top:55%;
+    /* transform: translate(-40%, 38%); */
+  }
+  
+  .inner-circle {
+    position: absolute;
+    width: 72%;
+    height: 72%;
+    background-color: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

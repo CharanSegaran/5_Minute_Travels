@@ -1,0 +1,59 @@
+<body>
+<div class="app_container">
+    <div class="wrapper">
+        <nav>
+          <div class="appleNav">
+            <ul>   
+              <li><a routerLink="/bookings" [queryParams]="{'session':(sessionId$ | async)}">Bookings</a></li>
+              <li><a routerLink="/">Log Out</a></li>
+              <li><a routerLink="/t&c" [queryParams]="{'session':(sessionId$ | async)}">T&C</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    <div class="message_container" #scrollMe>
+        <ng-container *ngFor="let message of chatRows$|async; let i=index">
+            <div class="mb-3 col-10 position-relative bottom-0 start-50 translate-middle-x">
+
+                <span class="message_sender">{{message.sender}}</span>
+                    <div class="text">{{message.text}}</div>
+                    <ng-container *ngIf="message.componentType">
+                        <ng-template dynamic-component
+                          [componentType]="message.componentType"
+                          [componentData]="message.componentData">
+                        </ng-template>
+                      </ng-container>
+            </div>
+        </ng-container> 
+        <div class="loader" *ngIf="loading$ | async">
+          <span class="letter">L</span>
+          <span class="letter">O</span>
+          <span class="letter">A</span>
+          <span class="letter">D</span>
+          <span class="letter">I</span>
+          <span class="letter">N</span>
+          <span class="letter">G</span>
+          
+          <div class="covers">
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+          </div>
+        </div>  
+    </div>
+    
+    <form [formGroup]="messageForm" class="textBody">   
+        <div class="mb-3 col-10 position-absolute bottom-0 start-50 translate-middle-x">
+            <textarea
+            class="form-control form-control-lg" formControlName="text"
+            value="#563d7c" placeholder="Where shall we go?">
+            </textarea>
+            <button type="button" class="btn btn-outline-dark btn-lg" (click)="sendToBackEnd()">Get out of here!</button>
+        </div>
+    </form>
+</div>
+</body>

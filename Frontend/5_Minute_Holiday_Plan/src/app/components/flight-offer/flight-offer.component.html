@@ -1,0 +1,113 @@
+<body>
+<div *ngIf="displayTable">
+    <div *ngFor="let flightOffer of data.flights; let i = index" class="flight-container">
+        <div class="flight-header">
+            <div *ngFor="let offer of flightOffer.data.flightOffers">
+                <div *ngFor="let direction of offer.itineraries">   
+                    <div class="airline-logo">
+                        <img [src]="'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/' + direction.segments[0].carrierCode + '.svg' "alt="Airline Logo">
+                    </div>
+                    <div class="flight-details">
+                        <div class="flight-times" *ngFor="let directionSegment of direction.segments">
+                            <div class="top-row">
+                                {{directionSegment.departure.at|date:"H:mm,dd MMMM"}}
+                                <p>{{directionSegment.duration|duration}}</p>
+                                <span>{{directionSegment.arrival.at|date:"H:mm,dd MMMM"}}</span>
+                            </div>
+                            <div class="bottom-row">
+                                <span>{{directionSegment.departure.iataCode}}</span>
+                                <span class="custom-divider"></span>
+                                <span class="airplane-image"><img src="/assets/black-plane.png" alt="" width = "30" height = "30"></span>
+                                <span>{{directionSegment.arrival.iataCode}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div> 
+        </div>
+        <div class="flight-price">
+            <span class="text">€{{flightOffer.data.flightOffers[0].price.total}}</span>
+            <button class="btn btn-dark" (click)="selectFlight(flightOffer,i)">Select</button>
+        </div>
+        
+        <div *ngIf="displayForm && selectedFlightIndex === i" class="form-container">
+            <div ngbAccordion [closeOthers]="false" [animation]="true" #accordion="ngbAccordion">
+                <form [formGroup]="particulars" (ngSubmit)="submit(flightOffer)">
+                    <div formArrayName="passengers">
+                        <div *ngFor="let passengerFormGroup of passengersFormArray.controls; let a = index" [formGroupName]="a" ngbAccordionItem [collapsed]="collapsedStates[a]">
+                        <h2 ngbAccordionHeader>
+                            <button ngbAccordionButton (click)="toggleAccordion(a)">{{a+1}}. {{ passengers[a].travelerType }}</button>
+                        </h2>
+                        <div ngbAccordionCollapse>
+                            <div ngbAccordionBody>      
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" formControlName="firstName" class="form-control" placeholder="First name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" formControlName="lastName" class="form-control" placeholder="Last name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" formControlName="email" class="form-control" placeholder="email">
+                                    </div>
+                                    <div class="col-md-3 position-relative">
+                                        <label for="dateOfBirth" class="form-label">DOB</label>
+                                        <input ngbDatepicker #dob="ngbDatepicker" [minDate]="{year:1910,month:1,day:1}" [maxDate]="maxDate"
+                                        formControlName="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd">
+                                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dob.toggle()" type="button">Select DOB</button>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="countryCallingCode" class="form-label">Country code</label>
+                                        <select formControlName="countryCallingCode" class="form-control" placeholder="country code">
+                                            <option value="886">Taiwan (+886)</option>
+                                            <option value="65">Singapore (+65)</option>
+                                            <option value="60">Malaysia (+60)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="mobileNumber" class="form-label">Mobile no.</label>
+                                        <input type="number" formControlName="mobileNumber" class="form-control" placeholder="mobile number">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="passportNumber" class="form-label">Passport no.</label>
+                                        <input type="number" formControlName="passportNumber" class="form-control" placeholder="Passport number">
+                                    </div>
+                                    <div class="col-md-3 position-relative">
+                                        <label for="passportExpiryDate" class="form-label">Passport expiry date</label>
+                                        <input ngbDatepicker #expiryDate="ngbDatepicker" [minDate]="minDatePassport"
+                                         formControlName="passportExpiryDate" class="form-control" placeholder="yyyy-mm-dd">
+                                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="expiryDate.toggle()" type="button">Select Expiry Date</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="passportIssuanceCountry" class="form-label">Passport issued country</label>
+                                        <select id="countryCode" formControlName="passportIssuanceCountry" class="form-control" placeholder="Passport issued country">
+                                            <option value="SG">Singapore</option>
+                                            <option value="MY">Malaysia</option>
+                                            <option value="TW">Taiwan</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="nationality" class="form-label">Nationality</label>
+                                        <select formControlName="nationality" class="form-control" placeholder="nationality">
+                                            <option value="SG">Singapore</option>
+                                            <option value="MY">Malaysia</option>
+                                            <option value="TW">Taiwan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-dark" type="submit">Submit</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

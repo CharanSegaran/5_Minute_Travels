@@ -1,0 +1,107 @@
+
+<div class="wrapper">
+    <div class="image-container">
+      <!-- <img src="https://assets-global.website-files.com/63ec206c5542613e2e5aa784/643312a6bc4ac122fc4e3afa_main%20home.webp" alt="image"> -->
+      <img src="/assets/time-copy.webp" alt="">
+    </div>
+    <div class="content">
+        <section class="section hero"></section>
+        <section class="section gradient-purple">
+            <body>
+                <span class="big-circle">
+                    <span class="inner-circle"></span>
+                </span>
+                <img src="https://i.imgur.com/wcGWHvx.png" class="square" alt="" />
+                <div class="container" id="container">
+                    <div class="form-container sign-up-container">
+                        <form [formGroup]="signUpForm" (ngSubmit)="signUpSubmit()" novalidate>
+                            <h1>Create an account</h1>
+                            <span>Its very easy, just like booking a holiday with us!</span>                
+                                <div class="infield">
+                                    <input type="text" placeholder="Name"
+                                           class="form-control" formControlName="fullName"
+                                           [ngClass]="{
+                                                'is-valid': fullName.valid && fullName.touched,
+                                                'is-invalid': fullName.invalid && fullName.touched
+                                           }">
+                                    <label></label>
+                                    <div class="valid-feedback">Great!</div>
+                                    <div class="invalid-feedback">Don't be shy, tell us your name!</div>
+                                </div>
+                                <div class="infield">
+                                     <input type="email" class="form-control"
+                                            placeholder="Email" formControlName="signUpEmail"
+                                            [ngClass]="{'is-valid':signUpEmail.valid && signUpEmail.touched,
+                                                         'is-invalid':signUpEmail.errors?.['required'] && signUpEmail.touched|| 
+                                                                      signUpEmail.errors?.['pattern']}">
+                                            <div class="invalid-feedback" *ngIf="signUpEmail.errors?.['required'] && signUpEmail.touched">Email required</div>
+                                            <div class="invalid-feedback" *ngIf="signUpEmail.errors?.['pattern']">Email must be in the pattern example&#64;provider.com</div>
+                                            <div class="valid-feedback">Great!</div>
+                                </div>
+                                <div class="infield">                              
+                                     <input type="password" class="form-control" 
+                                            placeholder="Password" formControlName="signUpPassword"
+                                            [ngClass]="{'is-valid':signUpPassword.valid && signUpPassword.touched,
+                                                         'is-invalid':signUpPassword.errors?.['required'] && signUpPassword.touched || 
+                                                                      signUpPassword.errors?.['pattern']}">
+                                            <div class="invalid-feedback" *ngIf="signUpPassword.errors?.['required'] && signUpPassword.touched">Password required</div>
+                                            <div class="invalid-feedback" *ngIf="signUpPassword.errors?.['pattern']">
+                                                Password must have one upper case character, one lower case character, one number, one special character and minimum 8 characters long</div>
+                                            <div class="valid-feedback">Great!</div>
+                                </div>
+                                <div class="infield">
+                                    <input type="password" class="form-control"
+                                            placeholder="Confirm your password" formControlName="signUpConfirmPassword"
+                                            [ngClass]="{'is-valid':signUpConfirmPassword.valid && signUpConfirmPassword.touched && !signUpForm.errors,
+                                                        'is-invalid':signUpConfirmPassword.invalid && signUpConfirmPassword.touched ||
+                                                                     signUpForm.errors?.['PasswordsNoMatch'] && signUpConfirmPassword.touched && signUpConfirmPassword.valid}">
+                                            <div class="invalid-feedback" *ngIf="signUpConfirmPassword.touched && signUpConfirmPassword.invalid">Please retype your password</div>
+                                            <div class="invalid-feedback" *ngIf="signUpForm.errors?.['PasswordsNoMatch'] && signUpConfirmPassword.touched && signUpConfirmPassword.valid">
+                                                Passwords don't match
+                                            </div>
+                                            <div class="valid-feedback">Great!</div>
+                                </div>
+                            <button class="submit">Sign Up</button>
+                        </form>
+                    </div>
+                    <div class="form-container sign-in-container">
+                        <form [formGroup]="loginForm" (ngSubmit)="signInSubmit()" novalidate>
+                            <h1>Sign in</h1>
+                            <span>You can almost smell the holiday!</span>
+                            <div class="infield">
+                                <input type="text" placeholder="Email"
+                                    class="form-control" formControlName="logInEmail"
+                                    [ngClass]="{'is-invalid':logInEmail.invalid && logInEmail.touched}">
+                                <div class="invalid-feedback">Email is required</div> 
+                            </div>
+                            <div class="infield">
+                                <input type="password" placeholder="Password"
+                                    class="form-control" formControlName="logInPassword"
+                                    [ngClass]="{'is-invalid':logInPassword.invalid && logInPassword.touched}">
+                                <div class="invalid-feedback">Password is required</div>
+                            </div>
+                            <span *ngIf="invalidCredentials" class="text-danger">Wrong username or password</span>
+                            <a href="#" class="forgot">Forgot your password?</a>
+                            <button class="submit">Sign In</button>
+                        </form>
+                    </div>
+                    <div class="overlay-container" id="overlayCon">
+                        <div class="overlay">
+                            <div class="overlay-panel overlay-left">
+                                <h1>Welcome Back!</h1>
+                                <p>Click to sign in and get outta here!</p>
+                                <button>Sign In</button>
+                            </div>
+                            <div class="overlay-panel overlay-right">
+                                <h1>Bonjour mon ami!</h1>
+                                <p>Signing up with us allows us to curate your travel experience!</p>
+                                <button>Sign Up</button>               
+                            </div>
+                        </div>
+                        <button id="overlayBtn"></button>
+                    </div>
+                </div>
+            </body>
+        </section>
+      </div>
+  </div>

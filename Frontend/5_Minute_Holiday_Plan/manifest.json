@@ -1,0 +1,20 @@
+{
+    "name": "5_Minute_Travels",
+    "short_name": "5_Minute_Travel",
+    "start_url": ".",
+    "display": "browser",
+    "background_color": "#ffffff",
+    "description": "A convient way to request travel destinations and book flights all through on chatbot",
+    "categories": ["travel", "chatbot", "flight booking"],
+    "shortcuts" : [
+        {
+          "name": "Main Chatbot",
+          "url": "/chat",
+          "description": "The main chatbot which the user will use to search and book flights"
+        },
+        {
+          "name": "Bookings",
+          "url": "/booking",
+          "description": "A page to view all the flight bookings"
+        }]
+}

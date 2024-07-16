@@ -47,7 +47,7 @@ public class backendController {
         String sessionId = message.get("sessionId");
         String gptResponse = backEndService.inputFromGPT(query, sessionId);
         String fromAmadeus = backEndService.engageAmadeus(gptResponse);
-        standfordNLPRepository.getNERTag(query);
+        standfordNLPRepository.getNERTag(gptResponse);
         Map<String,Object> response = new HashMap<>();
         response.put("gptResponse", gptResponse);
         response.put("fromAmadeus", fromAmadeus);

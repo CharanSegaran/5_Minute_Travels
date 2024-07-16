@@ -13,7 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,26 +101,36 @@ public class BackEndRepository {
         return "";
     }
 
-    // public String findIATACode(String countryOrCity) throws ResponseException{
-    //     Location[] airportIATACode = amadeusRepository.findAirportByCityName(countryOrCity);
-    //     JSONObject jsonObject = new JSONObject(airportIATACode[0].getResponse().getBody());
-    //     JSONArray jsonArray = jsonObject.getJSONArray("data");
-    //     String iataCode = jsonArray.getJSONObject(0).optString("iataCode");
-    //     System.out.println(iataCode);
-    //     return iataCode;
-    // }
-
     public String findIATACodeFromCity(String city){
-        final SqlRowSet rs =jdbcTemplate.queryForRowSet(Constants.findIATAByCity, city);
-        if(rs.next()) return rs.getString("IATA");
+        System.out.println("City" + city);
+        final SqlRowSet rs =jdbcTemplate.queryForRowSet(Constants.findIATAByCity, "%"+city+"%");
+        if(rs.next()){
+            System.out.println(rs.getString("IATA")); 
+            return (rs.getString("IATA"));
+        } 
         return "";
 
     }
     public String findIATACodeFromAIrport(String airportName){
+        System.out.println("Airport" + airportName);
         final SqlRowSet rs = jdbcTemplate.queryForRowSet(Constants.findIATAByAirport, "%"+airportName+"%");
-        if(rs.next()) return (rs.getString("IATA"));
+        if(rs.next()){
+            System.out.println(rs.getString("IATA")); 
+            return (rs.getString("IATA"));
+        } 
         return "";
     }
+
+    public String findIATACodeFromCountry(String country){
+        System.out.println("Country:" + country);
+        final SqlRowSet rs = jdbcTemplate.queryForRowSet(Constants.findIATAByCountry, country);
+        if(rs.next()){
+            System.out.println(rs.getString("IATA")); 
+            return (rs.getString("IATA"));
+        } 
+        return "";
+    }
+
 
     public String convertDate(String unformattedDate){
         DateTimeFormatter inputFormatter = new DateTimeFormatterBuilder()

@@ -4,16 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.amadeus.exceptions.ResponseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.*;
-
-import ibf.tfip.__minute_travels.entities.User;
 import ibf.tfip.__minute_travels.repositories.AmadeusRepository;
 import ibf.tfip.__minute_travels.repositories.BackEndRepository;
 import ibf.tfip.__minute_travels.repositories.StandfordNLPRepository;

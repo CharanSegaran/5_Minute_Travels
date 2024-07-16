@@ -17,7 +17,7 @@ from langchain_mongodb.chat_message_histories import MongoDBChatMessageHistory
 import logging
 
 
-os.environ["OPENAI_API_KEY"] = "Your unique key"
+os.environ["OPENAI_API_KEY"] = "Your key"
 
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
@@ -68,7 +68,7 @@ conversational_rag_chain = RunnableWithMessageHistory(
     rag_chain,
     lambda session_id: MongoDBChatMessageHistory(
         session_id=session_id,
-        connection_string="Your mongo url",
+        connection_string="Your url",
         database_name="test",
         collection_name="chat_history"
     ),

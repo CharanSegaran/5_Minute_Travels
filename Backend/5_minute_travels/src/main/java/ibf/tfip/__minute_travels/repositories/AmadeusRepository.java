@@ -154,7 +154,7 @@ public class AmadeusRepository {
                 response = order.getResponse().getBody();
             }catch(Exception e){
                 System.out.println(e.getLocalizedMessage());
-                response = "Sorry there was a problem booking your flight. Please contact support for help";
+                response = e.getLocalizedMessage();
             }    
         }
         return response;

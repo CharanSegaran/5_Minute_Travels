@@ -50,9 +50,10 @@
         <div class="mb-3 col-10 position-absolute bottom-0 start-50 translate-middle-x">
             <textarea
             class="form-control form-control-lg" formControlName="text"
-            value="#563d7c" placeholder="Where shall we go?">
+            value="#563d7c" placeholder="Start by saying Hi">
             </textarea>
-            <button type="button" class="btn btn-outline-dark btn-lg" (click)="sendToBackEnd()">Get out of here!</button>
+            <button type="button" class="btn btn-outline-dark btn-lg" (click)="sendToBackEnd()">Send</button>
+            <div (keyup.enter)="sendToBackEnd()"></div>
         </div>
     </form>
 </div>

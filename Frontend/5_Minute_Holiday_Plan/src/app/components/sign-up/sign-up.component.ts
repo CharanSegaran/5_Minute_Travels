@@ -89,9 +89,7 @@ export class SignUpComponent implements AfterViewInit,OnInit{
               start: "top top",
               end: "+=50%",
               pin: true,
-              scrub: true,
-              markers: true
-
+              scrub: true
           }
           })
           .to("img", {

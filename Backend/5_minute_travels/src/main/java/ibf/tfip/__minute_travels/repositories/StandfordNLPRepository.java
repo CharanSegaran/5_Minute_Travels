@@ -39,7 +39,14 @@ public class StandfordNLPRepository {
         CoreDocument document = new CoreDocument(query);
         pipeline.annotate(document);
 
-        for(CoreEntityMention em: document.entityMentions()){
+        List<CoreEntityMention> entityMentions = document.entityMentions();
+
+        for (int i = 0; i < entityMentions.size(); i++) {
+            CoreEntityMention em = entityMentions.get(i);
+            if(details.get("departureDate")!=null &&
+               details.get("returnDate") != null &&
+               details.get("originLocationCode") != null &&
+               details.get("destinationLocationCode")!=null) i=entityMentions.size();
             switch (em.entityType()) {
                 case "DATE":
                     String convertedDate = backEndRepository.convertDate(em.text());
@@ -51,10 +58,20 @@ public class StandfordNLPRepository {
                     if(details.get("originLocationCode") == null) details.put("originLocationCode", iataCodeFromCity);
                     else details.put("destinationLocationCode", iataCodeFromCity);
                     break;
+                case "STATE_OR_PROVINCE":
+                    String iataCodeFromState = backEndRepository.findIATACodeFromCity(em.text());
+                    if(details.get("originLocationCode") == null) details.put("originLocationCode", iataCodeFromState);
+                    else details.put("destinationLocationCode", iataCodeFromState);
+                    break;
                 case "LOCATION":
                     String iataCodeFromAirport = backEndRepository.findIATACodeFromAIrport(em.text());
                     if(details.get("originLocationCode") == null) details.put("originLocationCode", iataCodeFromAirport);
                     else details.put("destinationLocationCode", iataCodeFromAirport);
+                    break;
+                case "COUNTRY":
+                    String iataCodeFromCountry = backEndRepository.findIATACodeFromCountry(em.text());
+                    if(details.get("originLocationCode") == null) details.put("originLocationCode", iataCodeFromCountry);
+                    else details.put("destinationLocationCode", iataCodeFromCountry);
                     break;
                 case "NUMBER":
                     if(details.get("adults") == null) details.put("adults", em.text());
